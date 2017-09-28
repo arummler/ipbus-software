@@ -34,6 +34,7 @@ LIBRARIES = 	-lpthread \
 		-lboost_filesystem \
 		-lboost_regex \
 		-lboost_thread \
+		-lboost_chrono \
 		\
 		-lcactus_uhal_grammars \
 		-lcactus_uhal_log	
