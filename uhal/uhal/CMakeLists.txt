@@ -1,3 +1,5 @@
+find_package(pugixml REQUIRED)
+
 add_library(cactus_uhal_uhal SHARED 
 	src/common/Buffers.cpp 
 	src/common/ClientInterface.cpp 

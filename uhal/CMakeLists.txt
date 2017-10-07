@@ -14,6 +14,6 @@ project(uhal)
 #include_directories("${PROJECT_SOURCE_DIR}")
 
 add_subdirectory(log)
-#add_subdirectory(grammars)
-#add_subdirectory(uhal)
+add_subdirectory(grammars)
+add_subdirectory(uhal)
 
