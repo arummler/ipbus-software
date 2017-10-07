@@ -299,7 +299,7 @@ void log_functions ( std::ofstream& aHppFile , std::ofstream& aHxxFile , std::of
     lDoxygen << "\t\tFunction to add a log entry at " << *lIt << " level\n"
              << "\t\t@param a" << *lIt << " a dummy parameter to choose the specialization of the function for the " << *lIt << " level\n";
 
-    for ( uint32_t i = 0 ; i!=MAX_NUM_ARGS ; ++i )
+    for ( uint32_t i = 0 ; i!=@MAX_NUM_ARGS@ ; ++i )
     {
       lTemplates << " typename T" << i << " ,";
       std::string lTemplatesStr ( lTemplates.str() );
@@ -345,7 +345,7 @@ void log_functions ( std::ofstream& aHppFile , std::ofstream& aHxxFile , std::of
     std::stringstream lInstructions;
     std::stringstream lDoxygen;
 
-    for ( uint32_t i = 0 ; i!=MAX_NUM_ARGS ; ++i )
+    for ( uint32_t i = 0 ; i!=@MAX_NUM_ARGS@ ; ++i )
     {
       lTemplates << " typename T" << i << " ,";
       std::string lTemplatesStr ( lTemplates.str() );
@@ -389,7 +389,7 @@ void log_functions ( std::ofstream& aHppFile , std::ofstream& aHxxFile , std::of
     std::stringstream lInstructions;
     std::stringstream lDoxygen;
 
-    for ( uint32_t i = 0 ; i!=MAX_NUM_ARGS ; ++i )
+    for ( uint32_t i = 0 ; i!=@MAX_NUM_ARGS@ ; ++i )
     {
       lTemplates << " typename T" << i << " ,";
       std::string lTemplatesStr ( lTemplates.str() );
@@ -445,15 +445,15 @@ int main ( int argc , char* argv[] )
 {
   try
   {
-    std::ofstream lHppFile ( "include/uhal/log/log.hpp" );
+    std::ofstream lHppFile ( argv[1] );
 
     if ( !lHppFile.is_open() )
     {
-      std::cout << "Unable to open HPP file" << std::endl;
+      std::cout << "Unable to open HPP file: " << argv[1] <<std::endl;
       return 1;
     }
 
-    std::ofstream lHxxFile ( "include/uhal/log/log.hxx" );
+    std::ofstream lHxxFile ( argv[2] );
 
     if ( !lHxxFile.is_open() )
     {
@@ -461,7 +461,7 @@ int main ( int argc , char* argv[] )
       return 1;
     }
 
-    std::ofstream lCppFile ( "src/common/log.cpp" );
+    std::ofstream lCppFile ( argv[3] );
 
     if ( !lCppFile.is_open() )
     {
