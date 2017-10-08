@@ -17,3 +17,15 @@ add_subdirectory(log)
 add_subdirectory(grammars)
 add_subdirectory(uhal)
 
+# The interesting stuff goes here
+# ===============================
+ 
+# Add all targets to the build-tree export set
+# export(TARGETS cactus_uhal_log cactus_uhal_grammars cactus_uhal_uhal
+#  FILE "${PROJECT_BINARY_DIR}/LogGrammarsUhalTargets.cmake")
+ 
+# Export the package for use from the build-tree
+# (this registers the build-tree with a global CMake-registry)
+# export(PACKAGE uhal)
+
+

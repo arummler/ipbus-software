@@ -245,7 +245,7 @@ namespace uhal
     }
     while ( lErrorCode == boost::asio::error::would_block );
 
-    write_callback ( lErrorCode );
+    write_callback ( lErrorCode, 123 );
 #endif
   }
 
@@ -363,7 +363,7 @@ namespace uhal
     }
     while ( lErrorCode == boost::asio::error::would_block );
 
-    read_callback ( lErrorCode );
+    read_callback ( lErrorCode,  123);
 #endif
   }
 

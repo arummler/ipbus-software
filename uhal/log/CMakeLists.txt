@@ -3,6 +3,12 @@ configure_file(src/common/generator.cxx.in src/common/generator.cxx @ONLY)
 
 set(USE_BACKTRACE FALSE)
 
+# If we have compiler requirements for this library, list them
+# here
+#target_compile_features(lib
+#    PUBLIC cxx_auto_type
+#    PRIVATE cxx_variadic_templates)
+
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/uhal/log)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src/common)
 
@@ -31,9 +37,33 @@ add_library(cactus_uhal_log SHARED
 	${CMAKE_CURRENT_BINARY_DIR}/src/common/log.cpp
 )
 
-target_include_directories(cactus_uhal_log PUBLIC include ${Boost_INCLUDE_DIRS})
+target_include_directories(cactus_uhal_log PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+    PRIVATE ${Boost_INCLUDE_DIRS})
 
 #target_link_libraries(cactus_uhal_log ${Boost_thread_LIBRARY} ${Boost_system_LIBRARY})
 target_link_libraries(cactus_uhal_log ${Boost_libraries})
 
+install(TARGETS cactus_uhal_log EXPORT cactus_uhal_logConfig
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
+
+file(GLOB INC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/uhal/log/*")
+install(FILES ${INC_FILES} DESTINATION include/uhal/log)
+
+# This makes the project importable from the install directory
+# Put config file in per-project dir (name MUST match), can also
+# just go into 'cmake'.
+install(EXPORT cactus_uhal_logConfig DESTINATION share/cactus_uhal_log/cmake)
+
+# This makes the project importable from the build directory
+export(TARGETS cactus_uhal_log  FILE cactus_uhal_logConfig.cmake)
+
+#install(EXPORT UhalLogTarget.cmake)
+# EXPORT cactus_uhal_log-config
+
+
+#install(EXPORT cactus_uhal_log-config DESTINATION cmake)
 

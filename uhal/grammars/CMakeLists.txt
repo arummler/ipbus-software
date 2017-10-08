@@ -11,4 +11,10 @@ add_library(cactus_uhal_grammars SHARED
 
 target_include_directories(cactus_uhal_grammars PUBLIC include)
 
+install(TARGETS cactus_uhal_grammars
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
 
+file(GLOB INC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/uhal/grammars/*")
+install(FILES ${INC_FILES} DESTINATION include/uhal/grammars)

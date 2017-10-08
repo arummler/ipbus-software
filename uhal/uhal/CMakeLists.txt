@@ -20,4 +20,10 @@ target_include_directories(cactus_uhal_uhal PUBLIC include include/uhal/Template
 
 target_link_libraries(cactus_uhal_uhal cactus_uhal_log cactus_uhal_grammars)
 
+install(TARGETS cactus_uhal_uhal
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
 
+file(GLOB INC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/uhal/uhal/*")
+install(FILES ${INC_FILES} DESTINATION include/uhal/uhal)
