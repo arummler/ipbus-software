@@ -40,10 +40,11 @@ add_library(cactus_uhal_log SHARED
 target_include_directories(cactus_uhal_log PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
-    PRIVATE ${Boost_INCLUDE_DIRS})
+    $<INSTALL_INTERFACE:include/uhal>
+    $<INSTALL_INTERFACE:include/uhal/log>)
 
 #target_link_libraries(cactus_uhal_log ${Boost_thread_LIBRARY} ${Boost_system_LIBRARY})
-target_link_libraries(cactus_uhal_log ${Boost_libraries})
+target_link_libraries(cactus_uhal_log INTERFACE boost_thread boost_system)
 
 install(TARGETS cactus_uhal_log EXPORT cactus_uhal_logConfig
   RUNTIME DESTINATION bin
@@ -61,9 +62,5 @@ install(EXPORT cactus_uhal_logConfig DESTINATION share/cactus_uhal_log/cmake)
 # This makes the project importable from the build directory
 export(TARGETS cactus_uhal_log  FILE cactus_uhal_logConfig.cmake)
 
-#install(EXPORT UhalLogTarget.cmake)
-# EXPORT cactus_uhal_log-config
 
-
-#install(EXPORT cactus_uhal_log-config DESTINATION cmake)
 
